@@ -25,5 +25,6 @@ private:
 private slots:
     void digit_pressed();
     void on_pbDot_released();
+    void unary_operation_pressed();
 };
 #endif // MAINWINDOW_H

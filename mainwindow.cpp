@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->pb7,SIGNAL(released()), this,SLOT(digit_pressed()));
     connect(ui->pb8,SIGNAL(released()), this,SLOT(digit_pressed()));
     connect(ui->pb9,SIGNAL(released()), this,SLOT(digit_pressed()));
+    connect(ui->pbPlusOrMinus,SIGNAL(released()), this,SLOT(unary_operation_pressed()));
 }
 
 MainWindow::~MainWindow() {
@@ -23,17 +24,28 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::digit_pressed() {
-    qDebug() << "Button pressed";
+    // qDebug() << "Button pressed";
     QPushButton *button = (QPushButton *) sender();
     double labelNumber;
     QString newLabel;
     labelNumber = (ui->labelDisplay->text() + button->text()).toDouble();
-    newLabel = QString::number(labelNumber,'g',16);
+    newLabel = QString::number(labelNumber, 'g', 15);
     ui->labelDisplay->setText(newLabel);
 }
 
-void MainWindow::on_pbDot_released()
-{
+void MainWindow::on_pbDot_released() {
     ui->labelDisplay->setText(ui->labelDisplay->text() + ".");
 }
 
+void MainWindow::unary_operation_pressed() {
+    double labelNumber;
+    QString newLabel;
+
+    QPushButton *button = (QPushButton *) sender();
+    if (button->text() == "+/-") {
+        labelNumber = ui->labelDisplay->text().toDouble();
+        labelNumber = labelNumber * -1;
+        newLabel = QString::number(labelNumber, 'g', 15);
+        ui->labelDisplay->setText(newLabel);
+    }
+}

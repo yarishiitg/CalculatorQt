@@ -1,4 +1,4 @@
-## Build Steps
+## Mac OS Specific Instructions
 
 ### Build with CMake
 

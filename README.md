@@ -1,4 +1,5 @@
-## Mac OS Specific Instructions
+# Calculator Application using C++ Qt Framework
+### Mac OS Specific Instructions
 
 ### Build with CMake
 
